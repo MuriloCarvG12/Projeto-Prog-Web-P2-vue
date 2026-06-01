@@ -1,8 +1,8 @@
 <script setup>
   import Header from "./components/Header.vue";
   import Dashboard from "./components/Dashboard.vue";
-  import Reports from "./components/Reports.vue";
-  import Settings from "./components/Settings.vue";
+  import Reserva from "./components/Reserva.vue";
+  import SobreNos from "./components/SobreNos.vue";
 
   import {ref, computed } from "vue"
 
@@ -13,9 +13,9 @@
         case 1:
             return Dashboard;
         case 2:
-            return Reports;
+            return Reserva;
         case 3:
-            return Settings;
+            return SobreNos;
         default:
             return null;
     }
@@ -28,13 +28,13 @@
   <div style=" display: flex; flex-direction: row; height:100%; width:100%">
     <div class="side-bar">
         <div class="menu-button" @click="CurrentPageState = 1">
-            Dashboard
+            DashBoard - Trens
         </div>
         <div class="menu-button" @click="CurrentPageState = 2">
-            Reports
+            Reserva 
         </div>
         <div class="menu-button" @click="CurrentPageState = 3">
-            Settings
+            Sobre Nós
         </div>
     </div>
     <div style="display: flex; flex-direction: column; background-color:red; height:100%; width:100%">

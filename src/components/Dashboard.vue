@@ -1,9 +1,11 @@
 <script setup>
-const trens = [
-    { id: 1, nome: "Expresso Norte", vagas: 45 },
-    { id: 2, nome: "Expresso Sul", vagas: 12 },
-    { id: 3, nome: "Regional", vagas: 28 }
-];
+
+    const props = defineProps({
+        wagons: Array
+    });
+
+
+    
 </script>
 
 <template>
@@ -11,12 +13,13 @@ const trens = [
         <h1>Dashboard - Trens</h1>
 
         <div
-            v-for="trem in trens"
-            :key="trem.id"
+            v-for="wagon in wagons"
+            :key="wagon.Id"
             class="card"
         >
-            <h3>{{ trem.nome }}</h3>
-            <p>Vagas disponíveis: {{ trem.vagas }}</p>
+            <h3>{{ wagon.RouteCode }}</h3>
+            <h3>{{ wagon.CarriageClass }}</h3>
+              <p>{{ wagon.CarriageSeats.filter(seat => !seat.SeatTaken).length }} seats available</p>
         </div>
     </div>
 </template>

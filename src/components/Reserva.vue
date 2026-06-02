@@ -1,33 +1,34 @@
 <script setup>
-import { ref } from "vue";
 
-const nome = ref("");
-const assento = ref("");
+    const props = defineProps({
+        wagons: Array
+    });
 
-function reservar() {
-    alert(
-        `Reserva realizada!\nPassageiro: ${nome.value}\nAssento: ${assento.value}`
-    );
-}
+    
 </script>
 
 <template>
     <div class="page">
-        <h1>Reserva</h1>
+        <h1>Dashboard - Trens</h1>
 
-        <input
-            v-model="nome"
-            placeholder="Nome do passageiro"
-        />
+        <div class="grid-container">
+            <div v-for="wagon in wagons" :key="wagon.Id" class="wagon-card">
+            
+                <h2>Vagão - {{ wagon.Id }}</h2>
 
-        <input
-            v-model="assento"
-            placeholder="Número do assento"
-        />
+                <div class="seats-grid">
+                <div 
+                    v-for="seat in wagon.CarriageSeats" 
+                    :key="seat.Id"
+                    :class="seat.SeatTaken ? 'seat-taken' : 'seat-free'"
+                >
+                    <p>{{ seat.SeatNumber }}</p>
+                </div>
+            </div>
 
-        <button @click="reservar">
-            Reservar
-        </button>
+        </div>
+    </div>
+        
     </div>
 </template>
 
@@ -39,6 +40,43 @@ function reservar() {
     gap: 10px;
     background-color: white;
     height: 100%;
+    overflow-y: scroll;
+    align-items: center;
+}
+
+.grid-container
+{
+    background-color: azure;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #d8dbe2;
+    border-radius: 2%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wagon-card
+{
+    width: 60%;
+    height: 80%;
+    background-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #535353;
+    border-radius: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.seats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 100px); /* 4 seats per row */
+  gap: 10px;
+  padding: 10px;
 }
 
 input {
@@ -47,5 +85,25 @@ input {
 
 button {
     padding: 10px;
+}
+
+.seat-free {
+  width: 50px;
+  height: 50px;
+  background-color: greenyellow;
+  border-radius: 8px;
+  
+}
+
+.seat-free:hover
+{
+    cursor: pointer;
+}
+
+.seat-taken {
+  width: 50px;
+  height: 50px;
+  background-color: indianred;
+  border-radius: 8px;
 }
 </style>

@@ -4,8 +4,24 @@
   import Reserva from "./components/Reserva.vue";
   import SobreNos from "./components/SobreNos.vue";
 
-  import {ref, computed } from "vue"
+  import {ref, computed, onMounted } from "vue"
 
+  const wagons = ref([]);
+
+    async function fetchWagons() {
+    const url = "http://localhost:8080/GetCarriages?CarriageType=PassengerCarriage";
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Response status: ${response.status}`);
+        wagons.value = await response.json();
+    } catch (error) {
+        console.error(error.message);
+    }
+    }
+
+    onMounted(() => {
+    fetchWagons(); // no top-level await, no Suspense needed
+    });
 
   const CurrentPageState = ref(1)
   const currentComponent = computed(() => {
@@ -38,7 +54,7 @@
         </div>
     </div>
     <div style="display: flex; flex-direction: column; background-color:red; height:100%; width:100%">
-        <component :is="currentComponent" />
+        <component :is="currentComponent" :wagons="wagons" />
     </div>
   </div>
 </template>

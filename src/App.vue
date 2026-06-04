@@ -20,7 +20,7 @@
     }
 
     onMounted(() => {
-    fetchWagons(); // no top-level await, no Suspense needed
+    fetchWagons(); 
     });
 
   const CurrentPageState = ref(1)
@@ -36,6 +36,10 @@
             return null;
     }
 });
+
+async function receiveEmit() {
+    await fetchWagons();
+}
 
 </script>
 
@@ -54,7 +58,8 @@
         </div>
     </div>
     <div style="display: flex; flex-direction: column; background-color:red; height:100%; width:100%">
-        <component :is="currentComponent" :wagons="wagons" />
+        <component :is="currentComponent" :wagons="wagons" @seatReserved="receiveEmit"/>
+
     </div>
   </div>
 </template>

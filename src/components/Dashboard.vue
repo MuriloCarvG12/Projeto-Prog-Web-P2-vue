@@ -45,7 +45,7 @@
           </span>
 
           <span :class="['badge', isWagonFull(wagon) ? 'badge-full' : 'badge-ok']">
-            {{ isWagonFull(wagon) ? 'ocupado' : 'disponível' }}
+            {{ isWagonFull(wagon) ? 'nenhum assento disponível' : 'disponível' }}
           </span>
         </div>
       </div>

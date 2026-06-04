@@ -3,6 +3,7 @@
 
 <template>
     <div class="header-bg">
+        <h1 style="text-align:center; color:white">ViaTrilho</h1>
     </div>
 </template>
 

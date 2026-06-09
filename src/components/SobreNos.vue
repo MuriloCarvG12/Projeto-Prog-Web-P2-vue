@@ -3,7 +3,7 @@
         <h1>Sobre Nós</h1>
 
         <p>
-            O SIGA é um sistema de reserva de assentos ferroviários
+            O ViaTrilho é um sistema de reserva de assentos ferroviários
             desenvolvido para facilitar o gerenciamento de passageiros,
             vagões e reservas.
         </p>
